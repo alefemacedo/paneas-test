@@ -1,0 +1,41 @@
+<div class="login">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title><h2>Login</h2></mat-card-title>
+          <mat-card-subtitle>Informe seus dados de login</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form class="form">
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Por favor informe um e-mail válido
+                    </mat-error>
+        
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        O campo de e-mail é <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="full-width">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput [formControl]="emailFormControl" placeholder="Informe a senha">
+                    <mat-error *ngIf="passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
+                        Por favor informe uma senha com pelo menos 2 caractéres
+                    </mat-error>
+        
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        O campo de senha é <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-button>Login</button>
+          <button mat-button>Registrar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
