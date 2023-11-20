@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Nova tarefa</h1>
+
+<div mat-dialog-content class="task-form">
+    <form [formGroup]="formControl" class="form">
+        <mat-form-field class="full-width">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title" />
+
+            <mat-error
+                *ngIf="formControl.controls['title'].hasError('minlength') &&
+                !formControl.controls['title'].hasError('required')"
+            >
+                O campo de descrição necessita de pelo menos 5 caractéres
+            </mat-error>
+
+            <mat-error *ngIf="formControl.controls['title'].hasError('required')">
+                O título é <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput placeholder="Ex. Tarefa teste 1" formControlName="description">
+                Descrição da tarefa
+            </textarea>
+
+            <mat-error
+                *ngIf="formControl.controls['description'].hasError('minlength') &&
+                !formControl.controls['description'].hasError('required')"
+            >
+                O campo de descrição necessita de pelo menos 15 caractéres
+            </mat-error>
+
+            <mat-error *ngIf="formControl.controls['description'].hasError('required')">
+                O campo de descrição é <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>Escolha uma data limite</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="due_date">
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancelar</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Salvar</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+
+            <mat-error *ngIf="formControl.controls['due_date'].hasError('required')">
+                O campo de data limite é <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Selecione um responsável</mat-label>
+            <mat-select formControlName="responsible_id">
+                <mat-option *ngFor="let option of userOptions" [value]="option.value">
+                    {{ option.label }}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="formControl.controls['responsible_id'].hasError('required')">
+                O campo de responsável é <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button
+        mat-button
+        mat-dialog-close
+        [disabled]="!formControl.valid"
+        cdkFocusInitial
+        (click)="submit()"
+    >
+        Salvar
+    </button>
+</div>

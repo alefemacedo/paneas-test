@@ -1,5 +1,5 @@
-import { AuthGuard } from "./auth.guard";
+import { authGuard } from './auth/auth.guard'
 
 export {
-    AuthGuard
+    authGuard
 }

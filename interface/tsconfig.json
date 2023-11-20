@@ -28,8 +28,10 @@
       "@app/*": ["app/*"],
       "@views/*": ["views/*"],
       "@components/*": ["components/*"],
-      "@services/*": ["services/*"],
-      "@guards/*": ["_guards/*"]
+      "@services/*": ["_services/*"],
+      "@guards/*": ["_guards/*"],
+      "@validators/*": ["_validators/*"],
+      "@interceptors/*": ["_interceptors/*"]
     }
   },
   "angularCompilerOptions": {
