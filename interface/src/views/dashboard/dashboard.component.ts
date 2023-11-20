@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 
 import { TaskFormDialog, TaskData } from '@components/task-form/task-form.component';
 
@@ -28,7 +29,8 @@ import { Storage } from '@services/storage.service'
         MatTableModule,
         MatButtonModule,
         MatMenuModule,
-        RouterLink
+        RouterLink,
+        MatListModule
     ],
     animations: [
         trigger('detailExpand', [

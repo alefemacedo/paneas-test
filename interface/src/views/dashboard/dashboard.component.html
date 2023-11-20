@@ -25,12 +25,19 @@
 
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side" position="end">
-        <button mat-button [routerLink]="'/perfil'">
-            Acessar perfil
-        </button>
-        <button mat-button (click)="logout()">
-            Sair
-        </button>
+        <mat-nav-list>
+            <mat-list-item>
+                <button mat-button [routerLink]="'/perfil'">
+                    Acessar perfil
+                </button>
+            </mat-list-item>
+
+            <mat-list-item>
+                <button mat-button (click)="logout()">
+                    Sair
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-drawer>
 
     <mat-drawer-content>
