@@ -1,13 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError
-# from django.conf import settings
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer, TaskSerializer
 from .models import User, Task
-# import jwt, datetime
 
 class RegisterView(APIView):
     """
@@ -24,37 +22,6 @@ class RegisterView(APIView):
             'user': serializer.data,
             'msg': 'User successfully registered! (Usuário cadastrado com sucesso!)'
         })
-
-# class AuthenticateView(APIView):
-#     """
-#         View to authenticate in the Application
-#     """
-#     def post(self, request):
-#         email = request.data['email']
-#         password = request.data['password']
-
-#         user = User.objects.filter(email=email).first()
-#         if user is None: raise AuthenticationFailed('User not found! (Usuário não encontrado!)')
-
-#         if not user.check_password(password):
-#             raise AuthenticationFailed('Incorrect password! (Senha incorreta!)')
-        
-#         payload = {
-#             'id': user.id,
-#             'nbf': datetime.datetime.utcnow() + datetime.timedelta(minutes=-5),
-#             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7),
-#             'iat': datetime.datetime.utcnow()
-#         }
-
-#         token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
-
-#         response = Response()
-#         response.set_cookie(key='jwt_token', value=token, httponly=True)
-#         response.data = {
-#             'jwt_token': token
-#         }
-
-#         return response
 
 class ListView(APIView):
     """

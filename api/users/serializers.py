@@ -29,6 +29,10 @@ class UserSerializer(ModelSerializer):
         return instance
 
 class TaskSerializer(ModelSerializer):
+    """
+        Receives the request data necessary to create a Task, validate it and
+        save in the Database
+    """
     responsible = UserSerializer(read_only=True)
 
     class Meta:
