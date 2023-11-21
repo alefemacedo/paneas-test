@@ -5,7 +5,7 @@
 
 ## Requisitos
 - Python ~3.9.5
-- Pip
+- Pip ~23.3.1
 - Mysql ~8.0
 - NVM ~v20.9.0
 
@@ -42,6 +42,7 @@
     ```
     pipenv shell
     ```
+6. Crie um banco de dados mysql chamado `paneas` no seu `localhost` porta `3306`
 5. Execute as migrations necessárias utilizando o Django
     ```
     python manage.py migrate
