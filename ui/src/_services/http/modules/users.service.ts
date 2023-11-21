@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Users extends Rest {
     constructor(http: HttpClient) {
-        super(http)
-        this.resource = 'users'
+        super(http);
+        this.resource = 'users';
     }
 }

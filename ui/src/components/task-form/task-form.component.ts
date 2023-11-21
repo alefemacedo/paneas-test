@@ -34,7 +34,7 @@ export interface TaskData {
     title: string;
     description: string;
     due_date: string;
-}
+};
 
 @Component({
     selector: 'ui-task-form-dialog',
@@ -75,10 +75,10 @@ export class TaskFormDialog implements OnInit {
         }
     );
 
-    userOptions: { label: String|Number, value: String }[] = []
+    userOptions: { label: String|Number, value: String }[] = [];
 
     ngOnInit() {
-        this.loadForm()
+        this.loadForm();
     }
 
     onNoClick(): void {
@@ -91,7 +91,6 @@ export class TaskFormDialog implements OnInit {
     loadForm() {
         this.users.getAll('list').subscribe({
             next: (response: any) => {
-                console.log(response)
                 this.userOptions = Object.values(response.data).map((user: any) => {
                     return {
                         value: user.id,
@@ -99,12 +98,12 @@ export class TaskFormDialog implements OnInit {
                     }
                 })
 
-                if (this.data) this.formControl.patchValue(this.data)
+                if (this.data) this.formControl.patchValue(this.data);
             },
             error: (error: any) => {
-                if (error.msg) this._snackBar.open(error.message, 'Fechar', { duration: 5000 }) 
+                if (error.msg) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 
     /**
@@ -115,18 +114,17 @@ export class TaskFormDialog implements OnInit {
         let params = {
             ...this.formControl.value,
             due_date: moment(this.formControl.value['due_date']).format('YYYY-MM-DD')
-        }
+        };
         this.tasks.create('create', params).subscribe({
             next: (response: any) => {
-                console.log(response)
-                if (response.msg) this._snackBar.open(response.msg, 'Fechar', { duration: 5000 })
-                this.formControl.reset()
+                if (response.msg) this._snackBar.open(response.msg, 'Fechar', { duration: 5000 });
+                this.formControl.reset();
                 this.dialogRef.close();
             },
             error: (error: any) => {
-                if (error.msg) this._snackBar.open(error.message, 'Fechar', { duration: 5000 }) 
+                if (error.msg) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 
     /**
@@ -139,10 +137,9 @@ export class TaskFormDialog implements OnInit {
         let params = {
             ...this.formControl.value,
             due_date: moment(this.formControl.value['due_date']).format('YYYY-MM-DD')
-        }
+        };
         this.tasks.update('update', id, params).subscribe({
             next: (response: any) => {
-                console.log(response)
                 if (response.msg) this._snackBar.open(response.msg, 'Fechar', { duration: 5000 });
                 this.formControl.reset();
                 this.dialogRef.close();
@@ -150,7 +147,7 @@ export class TaskFormDialog implements OnInit {
             error: (error: any) => {
                 if (error.msg) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 
     /**
@@ -159,10 +156,10 @@ export class TaskFormDialog implements OnInit {
      */
     submit() {
         if (this.data?.id) {
-            this.update(this.data.id)
+            this.update(this.data.id);
 
         } else {
-            this.save()
+            this.save();
         }
     }
 }

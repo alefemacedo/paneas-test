@@ -10,14 +10,14 @@ export class Rest {
     constructor(protected http: HttpClient) {}
 
     getAll(url: String, config: Object = {}): Observable<Object> {
-        return this.http.get(Rest.normalize(this.resource, url), config)
+        return this.http.get(Rest.normalize(this.resource, url), config);
     }
 
     get(url: String, id: String|Number, config: Object = {}): Observable<Object> {
         return this.http.get(
             Rest.normalize(Rest.normalize(this.resource, url), id),
             config
-        )
+        );
     }
 
     create(
@@ -25,7 +25,7 @@ export class Rest {
         params: Object,
         config: Object = {}
     ): Observable<Object> {
-        return this.http.post(Rest.normalize(this.resource, url), params, config)
+        return this.http.post(Rest.normalize(this.resource, url), params, config);
     }
 
     update(
@@ -38,7 +38,7 @@ export class Rest {
             Rest.normalize(Rest.normalize(this.resource, url), id),
             params,
             config
-        )
+        );
     }
 
     /**
@@ -53,7 +53,7 @@ export class Rest {
         return this.http.delete(
             Rest.normalize(Rest.normalize(this.resource, url), id),
             config
-        )
+        );
     }
 
     /**
@@ -64,6 +64,6 @@ export class Rest {
      * @returns {String}
      */
     private static normalize(start: String|Number, end: String|Number) {
-        return `${start}/${end}`.replace(/([^:]\/)\/+/g, '$1')
+        return `${start}/${end}`.replace(/([^:]\/)\/+/g, '$1');
     }
 }

@@ -16,7 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Auth } from '@services/http/index';
-import { Storage } from '@services/storage.service'
+import { Storage } from '@services/storage.service';
 
 @Component({
     selector: 'ui-login',
@@ -34,7 +34,6 @@ import { Storage } from '@services/storage.service'
     templateUrl: './login.component.html',
     styleUrl: './login.component.sass'
 })
-
 export class LoginComponent {
     constructor(
         public auth: Auth,
@@ -43,12 +42,10 @@ export class LoginComponent {
         private storage: Storage
     ) {}
 
-    formControl: FormGroup = new FormGroup(
-        {
-            email: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('', [Validators.required, Validators.minLength(2)])
-        }
-    );
+    formControl: FormGroup = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required, Validators.minLength(2)])
+    });
 
     /**
      * Input handler que verifica se os campos de email e senha ainda contêm os status
@@ -71,25 +68,25 @@ export class LoginComponent {
     login() {
         this.auth.create('authenticate', this.formControl.value).subscribe({
             next: (response: any) => {
-                this.storage.set('access_token', response.access)
-                this.storage.set('refresh_token', response.refresh)
-                this.router.navigateByUrl('')
+                this.storage.set('access_token', response.access);
+                this.storage.set('refresh_token', response.refresh);
+                this.router.navigateByUrl('');
             },
             error: (error: any) => {
-                console.log(error)
+                console.log(error);
                 if (error.status === 401) {
                     this._snackBar.open(
                         'Falha na autenticação! Usuário ou senha incorretos.',
                         'Fechar',
                         { duration: 5000 }
-                    )
+                    );
                     this.formControl.controls['email'].setErrors({ 'emailNotMatched': true });
                     this.formControl.controls['password'].setErrors({ 'passwordNotMatched': true });
 
                 } else if (error.message) {
-                    this._snackBar.open(error.message, 'Fechar', { duration: 5000 })
+                    this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
                 }
             }
-        })
+        });
     }
 }

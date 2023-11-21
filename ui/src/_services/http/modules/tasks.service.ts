@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Tasks extends Rest {
     constructor(http: HttpClient) {
-        super(http)
-        this.resource = 'users/tasks'
+        super(http);
+        this.resource = 'users/tasks';
     }
 }

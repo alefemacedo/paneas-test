@@ -16,7 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { TaskFormDialog, TaskData } from '@components/task-form/task-form.component';
 
 import { Tasks } from '@services/http/index';
-import { Storage } from '@services/storage.service'
+import { Storage } from '@services/storage.service';
 
 @Component({
     selector: 'ui-dashboard',
@@ -52,10 +52,10 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.loadData()
+        this.loadData();
     }
 
-    showFiller = false
+    showFiller = false;
 
     columnsToDisplay = ['id', 'title', 'due_date', 'responsible.first_name'];
     columnsLabels: any = {
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
         title: 'Título',
         due_date: 'Data limite',
         'responsible.first_name': 'Responsável'
-    }
+    };
     columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
     expandedElement: TaskData | null = null;
     dataSource: TaskData[] = [];
@@ -82,8 +82,9 @@ export class DashboardComponent implements OnInit {
         for (const key of keys) {
             if (currentObj && typeof currentObj === 'object' && key in currentObj) {
                 currentObj = currentObj[key];
+
             } else {
-                return undefined; // Property not found
+                return undefined;
             }
         }
     
@@ -96,13 +97,13 @@ export class DashboardComponent implements OnInit {
     loadData() {
         this.tasks.getAll('list').subscribe({
             next: (response: any) => {
-                this.dataSource = response.data
+                this.dataSource = response.data;
             },
             error: (error: any) => {
-                console.log(error)
-                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 })
+                console.log(error);
+                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 
     /**
@@ -112,7 +113,7 @@ export class DashboardComponent implements OnInit {
         const dialogRef = this.dialog.open(TaskFormDialog, { data: null, width: '100%' });
 
         dialogRef.afterClosed().subscribe(() => {
-            this.loadData()
+            this.loadData();
         });
     }
 
@@ -124,7 +125,7 @@ export class DashboardComponent implements OnInit {
         const dialogRef = this.dialog.open(TaskFormDialog, { data: { ...task }, width: '100%' });
 
         dialogRef.afterClosed().subscribe(() => {
-            this.loadData()
+            this.loadData();
         });
     }
 
@@ -134,21 +135,21 @@ export class DashboardComponent implements OnInit {
     deleteTask(id: String|Number) {
         this.tasks.destroy('delete', id).subscribe({
             next: (response: any) => {
-                if (response.msg) this._snackBar.open(response.msg, 'Fechar', { duration: 5000 })
-                this.loadData()
+                if (response.msg) this._snackBar.open(response.msg, 'Fechar', { duration: 5000 });
+                this.loadData();
             },
             error: (error: any) => {
-                console.log(error)
-                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 })
+                console.log(error);
+                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 
     /**
      * Desloga o usuário dos sistema e redireciona para a tela de login
      */
     logout() {
-        this.storage.clear()
-        this.router.navigateByUrl('/login')
+        this.storage.clear();
+        this.router.navigateByUrl('/login');
     }
 }

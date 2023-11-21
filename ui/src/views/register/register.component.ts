@@ -74,17 +74,16 @@ export class RegisterComponent {
      * backend via requisição AJAX
      */
     register() {
-        const params = { ...this.formControl.value }
-        delete params.password2
+        const params = { ...this.formControl.value };
+        delete params.password2;
         this.users.create('register', params).subscribe({
             next: (response: any) => {
-                console.log(response)
-                if (response.message) this._snackBar.open(response.message, 'Fechar', { duration: 5000 })
-                this.router.navigateByUrl('/login')
+                if (response.message) this._snackBar.open(response.message, 'Fechar', { duration: 5000 });
+                this.router.navigateByUrl('/login');
             },
             error: (error: any) => {
-                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 }) 
+                if (error.message) this._snackBar.open(error.message, 'Fechar', { duration: 5000 });
             }
-        })
+        });
     }
 }

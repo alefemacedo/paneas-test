@@ -4,14 +4,14 @@ export const baseURLInterceptor: HttpInterceptorFn = (
     req: HttpRequest<unknown>,
     next: HttpHandlerFn
 ) => {
-    // Add your default base URL here
-    const baseUrl = 'http://127.0.0.1:8000';
+    // Define a baseURL a ser utilizada para todas as requisições AJAX
+    const baseURL = 'http://127.0.0.1:8000';
 
-    // Clone the request and set the new URL
+    // Clona a requisição e concatena a baseURL
     const modifiedReq = req.clone({
-      url: `${baseUrl}/${req.url}`,
+      url: `${baseURL}/${req.url}`,
     });
 
-    // Pass the modified request to the next handler
+    // Passa a requisição alterada para o next de modo a continuar
     return next(modifiedReq);
 };

@@ -6,7 +6,7 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { VERSION as MAT_VERSION, MatNativeDateModule } from '@angular/material/core';
 
-import { authInterceptor, baseURLInterceptor } from '@interceptors/index'
+import { authInterceptor, baseURLInterceptor } from '@interceptors/index';
 
 export const appConfig: ApplicationConfig = {
     providers: [

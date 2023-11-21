@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Auth extends Rest {
     constructor(http: HttpClient) {
-        super(http)
-        this.resource = 'api'
+        super(http);
+        this.resource = 'api';
     }
 }

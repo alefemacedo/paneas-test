@@ -11,7 +11,7 @@ export class Storage {
     }
 
     public get(key: string) {
-        return localStorage.getItem(key)
+        return localStorage.getItem(key);
     }
 
     public remove(key: string) {
