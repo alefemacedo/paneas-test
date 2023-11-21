@@ -8,7 +8,7 @@
             <img cImg height="45" width="45" src="https://picsum.photos/200/200?grayscale" />
         </div>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="'/perfil'">Perfil</button>
+            <!-- <button mat-menu-item [routerLink]="'/perfil'">Perfil</button> -->
             <button mat-menu-item (click)="logout()">Sair</button>
         </mat-menu>
     </div>
@@ -26,11 +26,11 @@
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side" position="end">
         <mat-nav-list>
-            <mat-list-item>
+            <!-- <mat-list-item>
                 <button mat-button [routerLink]="'/perfil'">
                     Acessar perfil
                 </button>
-            </mat-list-item>
+            </mat-list-item> -->
 
             <mat-list-item>
                 <button mat-button (click)="logout()">

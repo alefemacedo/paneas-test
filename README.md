@@ -7,7 +7,7 @@
 - Python ~3.9.5
 - Pip ~23.3.1
 - Mysql ~8.0
-- NVM ~v20.9.0
+- NVM ~v20.9.0 (Node ~v20.9.0 e npm ~10.1.0)
 
 ## Instalação
 
